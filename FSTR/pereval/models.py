@@ -31,9 +31,9 @@ class Level(models.Model):
 
 
 class Image(models.Model):
-    title = models.CharField(blank=True, null=True)
-    data_added = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(null=True, blank=True)
+    title = models.CharField(max_length=32, blank=True, null=True)
+    date_added = models.DateTimeField(blank=True, null=True, auto_now_add=True)
+    image = models.ImageField(upload_to='media/', null=True, blank=True)
 
     def __str__(self):
         return f'id: {self.pk}, title:{self.title} {self.image}'

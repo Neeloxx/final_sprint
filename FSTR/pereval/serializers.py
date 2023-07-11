@@ -37,7 +37,10 @@ class PerevalSerializer(WritableNestedModelSerializer,
 
     class Meta:
         model = Pereval
-        exclude = 'status'
+        fields = [
+            'pk', 'status', 'beauty_title', 'title', 'other_titles',
+            'connect', 'user', 'coords', 'level', 'image'
+        ]
 
     def validate(self, attrs):
         user_data = attrs.get('user')
