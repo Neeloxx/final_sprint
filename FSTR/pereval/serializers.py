@@ -51,7 +51,7 @@ class PerevalSerializer(WritableNestedModelSerializer,
             user = self.instance.user
         else:
             try:
-                user = User.objects.get(email=user_data.get('email'))  # .exists())
+                user = User.objects.get(email=user_data.get('email'))
             except User.DoesNotExist:
                 user = None
 
