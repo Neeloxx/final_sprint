@@ -2,9 +2,11 @@ from rest_framework import viewsets, generics
 from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView
 from rest_framework import mixins
 from rest_framework.response import Response
-
+from .filters import PerevalFilter
+import django_filters
 from .serializers import *
 from .models import *
+
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -30,6 +32,8 @@ class LevelViewSet(viewsets.ModelViewSet):
 class PerevalListView(ListAPIView):
     queryset = Pereval.objects.all()
     serializer_class = PerevalSerializer
+    filterset_class = PerevalFilter
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
 
 
 class SubmitDataViewSet(mixins.CreateModelMixin,
@@ -37,12 +41,15 @@ class SubmitDataViewSet(mixins.CreateModelMixin,
                         generics.GenericAPIView):
     queryset = Pereval.objects.all()
     serializer_class = PerevalSerializer
+    filterset_class = PerevalFilter
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
+
 
 
 class PerevalUpdateView(RetrieveUpdateAPIView):
