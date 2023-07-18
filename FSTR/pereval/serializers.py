@@ -86,3 +86,14 @@ class PerevalSerializer(WritableNestedModelSerializer,
             user = User.objects.create(**user_data)
             pereval = Pereval.objects.create(**validated_data, user=user, level=level, coords=coords, image=image)
         return pereval
+
+
+class PerevalUpdateSerializer(WritableNestedModelSerializer, serializers.ModelSerializer):
+    coords = CoordsSerializer()
+    level = LevelSerializer()
+    image = ImageSerializer()
+
+    class Meta:
+        model = Pereval
+        fields = '__all__'
+        read_only_fields = ['user']
