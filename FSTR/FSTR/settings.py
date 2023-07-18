@@ -90,10 +90,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql', #Иногда не находит переменные окружения((( не знаю как пофиксить(((
         'NAME': 'FSTR',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'USER': str(os.getenv('USER')),
+        'PASSWORD': str(os.getenv('PASSWORD')),
+        'HOST': str(os.getenv('HOST')),
+        'PORT': str(os.getenv('PORT')),
     },
 }
 # Password validation
