@@ -96,4 +96,4 @@ class PerevalUpdateSerializer(WritableNestedModelSerializer, serializers.ModelSe
     class Meta:
         model = Pereval
         fields = '__all__'
-        read_only_fields = ['user']
+        read_only_fields = ['user', ]
